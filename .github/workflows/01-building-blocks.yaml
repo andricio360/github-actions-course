@@ -1,10 +1,6 @@
 name: 01 Building Block
 
 on:
-    push:
-        branches:
-        - main
-
     workflow_dispatch:
 
 jobs:
