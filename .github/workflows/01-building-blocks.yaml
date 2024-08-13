@@ -14,12 +14,6 @@ jobs:
             - name: echo-hello
               run: |
                 echo "Hello, world!"
-    echo-goodbye:
-        runs-on: ubuntu-latest
-        steps:
-            - name: echo-goodbye
-              run: |
-                echo "Goodbye, world!"
 
     echo-goodbye-zero:
         runs-on: ubuntu-latest
