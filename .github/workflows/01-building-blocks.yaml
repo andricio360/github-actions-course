@@ -20,3 +20,11 @@ jobs:
             - name: echo-goodbye
               run: |
                 echo "Goodbye, world!"
+
+    echo-goodbye-zero:
+        runs-on: ubuntu-latest
+        steps:
+            - name: echo-goodbye-zero
+              run: |
+                echo "Goodbye, world!"
+                exit 0
