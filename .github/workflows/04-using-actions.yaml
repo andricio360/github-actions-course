@@ -26,5 +26,9 @@ jobs:
             - name: Install dependencies
               working-directory: 04-using-actions/react-app
               run: |
-                cd "${{steps.working-directory}}"
                 npm ci
+
+            - name: Run Unit Tests
+              working-directory: 04-using-actions/react-app
+              run: |
+                npm run test
