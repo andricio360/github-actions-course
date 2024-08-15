@@ -8,14 +8,14 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Show OS
-              run:
+              run: |
                 echo "This workflow is running on an Ubuntu runner "
                 echo "${{ runner.os }}"
     windows-echo:
         runs-on: windows-latest
         steps:
             - name: Show OS
-              run:
+              run: |
                 echo "This workflow is running on a Windows runner "
                 echo "${{ runner.os }}"
 
@@ -23,6 +23,6 @@ jobs:
         runs-on: macos-latest
         steps:
             - name: Show OS
-              run:
+              run: |
                 echo "This workflow is running on a MacOS runner "
                 echo "${{ runner.os }}"
