@@ -1,4 +1,4 @@
-name: 01 Building Block
+name: 01 - Building Block
 
 on:
     workflow_dispatch:
