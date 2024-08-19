@@ -1,0 +1,66 @@
+name: 06 - Contexts
+
+run-name:
+    06 - Contexts | DEBUG - ${{ inputs.debug }}
+
+on:
+    workflow_dispatch:
+        inputs:
+            debug:
+                type: boolean
+                default: false
+
+
+env:
+    MY_WORKFLOW_VAR: "workflow"
+    MY_OVERWRITTEN_VAR: "workflow"
+
+
+jobs:
+    echo-data:
+        runs-on: ubuntu-latest
+        env:
+            MY_JOB_VAR: "job"
+            MY_OVERWRITTEN_VAR: "job"
+        steps:
+            - name: Display Information
+              run: |
+                echo "The event name is ${{ github.event_name }}"
+                echo "The repository name is ${{ github.repository }}"
+                echo "The repository owner is ${{ github.repository_owner }}"
+                echo "The ref is ${{ github.ref }}"
+                echo "The sha is ${{ github.sha }}"
+                echo "The actor is ${{ github.actor }}"
+                echo "The workflow is ${{ github.workflow }}"
+                echo "The run id is ${{ github.run_id }}"
+                echo "The run number is ${{ github.run_number }}"
+                echo "The action is ${{ github.action }}"
+                echo "The event path is ${{ github.event_path }}"
+                echo "The workspace is ${{ github.workspace }}"
+                echo "The action repository is ${{ github.action_repository }}"
+                echo "The action ref is ${{ github.action_ref }}"
+                echo "The head ref is ${{ github.head_ref }}"
+                echo "The base ref is ${{ github.base_ref }}"
+                echo "The event is ${{ github.event }}"
+                echo "The job is ${{ github.job }}"
+                echo "The run attempt is ${{ github.run_attempt }}"
+                echo "The job is ${{ github.job }}"
+                echo "The job run id is ${{ github.job_run_id }}"
+                echo "The job run attempt is ${{ github.job_run_attempt }}"
+                echo "The matrix is ${{ github.matrix }}"
+                echo "The strategy is ${{ github.strategy }}"
+
+            - name: Retrieve Variable
+              run: echo "MY_VAR is ${{ vars.MY_VAR }}"
+
+            - name: Print Environment Variables
+              env:
+                  MY_OVERWRITTEN_VAR: "step"
+              run: |
+                echo "Worlflow env: ${{ env.MY_WORKFLOW_VAR }}"
+                echo "Overwritten env: ${{ env.MY_OVERWRITTEN_VAR }}"
+
+            - name: Print Environment Variables - 2
+              run: |
+                echo "Worlflow env: ${{ env.MY_WORKFLOW_VAR }}"
+                echo "Overwritten env: ${{ env.MY_OVERWRITTEN_VAR }}"
