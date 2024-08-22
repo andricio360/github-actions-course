@@ -1,0 +1,31 @@
+name: 07 - Using Expressions
+
+on:
+    push:
+        branches:
+            - main
+
+    workflow_dispatch:
+        inputs:
+            debug:
+                type: boolean
+                default: false
+
+jobs:
+    echo:
+        runs-on: ubuntu-latest
+        steps:
+            - name: [debug] Print start-up data
+              if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.debug == 'true' }}
+              run: |
+                echo "Triggered by: ${{ github.event_name }}""
+                echo "Branch: ${{ github.ref }}""
+                echo "Commit SHA: ${{ github.sha }}""
+                echo "Runner OS: ${{ runner.os }}""
+
+
+
+
+
+
+
