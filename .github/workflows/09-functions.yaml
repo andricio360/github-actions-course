@@ -10,12 +10,17 @@ on:
     push:
         branches:
             - main
-    
+
 
 jobs:
     echo:
         runs-on: ubuntu-latest
         steps:
+            - name: "Sleep for 20 seconds"
+              run: |
+                echo "Sleeping for 20 seconds"
+                sleep 20
+
             - name: "Failling Step"
               run: |
                     echo "This step will fail"
@@ -29,7 +34,7 @@ jobs:
             - name: "I will execute"
               if: ${{ failure() }}
               run: |
-                  echo "I will print if previous steps succeed."
+                  echo "I will print if any previous steps fails."
 
             - name: "I will execute"
               if: ${{ !cancelled() }}
@@ -40,3 +45,4 @@ jobs:
               if: ${{ cancelled() }}
               run: |
                   echo "I will only print when the workflow is cancelled."
+
