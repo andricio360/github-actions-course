@@ -3,21 +3,28 @@ name: 09 - Using Functions
 on:
     workflow_dispatch:
 
-    pull_request:
-        branches:
-            - main
-
-    push:
-        branches:
-            - main
-
 
 jobs:
     echo:
         runs-on: ubuntu-latest
         steps:
 
-            - name: "Sleep for 20 seconds"
+            - name: "Print PR Title"
+              run: |
+                    echo "PR Title: ${{ github.event.pull_request.title }}"
+
+            - name: "Print PR Labels"
+              run: |
+                    cat << EOF
+                    ${{ toJSON(github.event.pull_request.labels) }}
+                    EOF
+
+            - name: "Bug Step"
+              if: ${{ success() && contains(github.event.pull_request.title, 'fix') }}
+              run: |
+                    echo "I am a bug fix"
+
+            - name: "Sleep for 5 seconds"
               run: |
                 echo "Sleeping for 20 seconds"
                 sleep 20
@@ -46,4 +53,3 @@ jobs:
               if: ${{ cancelled() }}
               run: |
                   echo "I will only print when the workflow is cancelled."
-
